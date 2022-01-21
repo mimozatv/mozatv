@@ -1,21 +1,10 @@
+import fs from 'fs'
+import parser from 'iptv-playlist-parser'
 
-#!/bin/bash
-#
-# bash script to create playlist files in music subdirectories
-#
-# Steve Carlson (steve@scarlson.co)
+const playlist = fs.readFileSync('./playlist.m3u', { encoding: 'utf-8' })
+const result = parser.parse(playlist)
 
-find . -type d | 
-while read subdir
-do
- rm -f *.m3u
-
-  for filename in "$subdir"/*.mp3
-  do
-	echo "${filename##*/}" >> ./"$subdir"/"${subdir##*/}.m3u"
-  done
-
-done
+console.log(result)
 
 #EXTINF:-1,==========Albania==========
 http://012345x.com:999/XM26TWZ90F/JExnLudAJU/7235
