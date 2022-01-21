@@ -1,3 +1,22 @@
+
+#!/bin/bash
+#
+# bash script to create playlist files in music subdirectories
+#
+# Steve Carlson (steve@scarlson.co)
+
+find . -type d | 
+while read subdir
+do
+ rm -f *.m3u
+
+  for filename in "$subdir"/*.mp3
+  do
+	echo "${filename##*/}" >> ./"$subdir"/"${subdir##*/}.m3u"
+  done
+
+done
+
 #EXTINF:-1,==========Albania==========
 http://012345x.com:999/XM26TWZ90F/JExnLudAJU/7235
 #EXTINF:-1,AL: RTK 1
